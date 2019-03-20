@@ -418,6 +418,7 @@ function(exports, dojo, domStyle, app, scenegraph, createScene, animation, raste
 			if(displayEdges) {
 				raster.scanlineStrokePolygon(vertices, polygon, lineColor3D);
 			}
+			polycount++
 		}
 	}
 
@@ -694,7 +695,7 @@ function(exports, dojo, domStyle, app, scenegraph, createScene, animation, raste
 			curFramerate = 1000 / frameDuration;
 		}
 		// Calculate an exponential tail average.
-		if(framerate == undefined) {
+		if(framerate === undefined) {
 			framerate = curFramerate;
 		} else {
 			framerate = framerate * 0.95 + curFramerate * 0.05;
@@ -704,7 +705,7 @@ function(exports, dojo, domStyle, app, scenegraph, createScene, animation, raste
 		displayText(str, 10, 18, true);
 
 		// Display polycount.
-		if(polycount != 0) {
+		if(polycount !== 1) {
 			str = "polys: " + polycount;
 			//console.log(str);
 			displayText(str, 10, 38, true);
