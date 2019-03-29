@@ -16,9 +16,11 @@ The development can be done inside the docker container by mounting the current 
 For creating the container run:\
 `docker build -t <yourTagName> ./docker/develop/`
 
-For running the image run:\
+For running the image on mac/linux run:\
 `docker run -d -v $(pwd):/opt/www -p 8080:8080 <yourTagName>`
 
+For running the image on windows (untested) run:\
+`docker run -d -v %cd%:/opt/www -p 8080:8080 <yourTagName>`
 
 The page can be opened on Port `8080`
 
