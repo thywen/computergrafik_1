@@ -705,7 +705,7 @@ function(exports, dojo, domStyle, app, scenegraph, createScene, animation, raste
 		displayText(str, 10, 18, true);
 
 		// Display polycount.
-		if(polycount !== 1) {
+		if(polycount !== 0) {
 			str = "polys: " + polycount;
 			//console.log(str);
 			displayText(str, 10, 38, true);
