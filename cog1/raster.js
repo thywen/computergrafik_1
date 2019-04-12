@@ -116,6 +116,8 @@ function(exports, shader, framebuffer, data) {
 		var y = startY;
 		var z = startZ;
 
+		var endOfOctant;
+
 		// z is linearly interpolated with delta dz in each step of the driving variable.
 		var dz;
 
@@ -136,15 +138,15 @@ function(exports, shader, framebuffer, data) {
       if (dX >= 0) {
         x = startX;
         y = startY;
-        e = endX;
+        endOfOctant = endX;
       } else {
         x = endX;
         y = endY;
-        e = startX;
+        endOfOctant = startX;
       }
       framebuffer.set(x, y, getZ(x, y), color);
 
-      for (i = 0; x < e; i++) {
+      for (i = 0; x < endOfOctant; i++) {
         x++;
 
         if (dYdXdiff2 < 0) {
@@ -164,15 +166,15 @@ function(exports, shader, framebuffer, data) {
       if (dY >= 0) {
         x = startX;
         y = startY;
-        e = endY;
+        endOfOctant = endY;
       } else {
         x = endX;
         y = endY;
-        e = startY;
+        endOfOctant = startY;
       }
       framebuffer.set(x, y, getZ(x, y), color)
 
-      for (i = 0; y < e; i++) {
+      for (i = 0; y < endOfOctant; i++) {
         y++;
 
         if (dXdYdiff2 <= 0) {
