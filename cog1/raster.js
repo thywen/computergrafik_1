@@ -135,6 +135,7 @@ function(exports, shader, framebuffer, data) {
 
     //Dominant X-Axis
     if (dYAbs <= dXAbs) {
+    	e = dYdXdiff2;
       if (dX >= 0) {
         x = startX;
         y = startY;
@@ -149,20 +150,21 @@ function(exports, shader, framebuffer, data) {
       for (i = 0; x < endOfOctant; i++) {
         x++;
 
-        if (dYdXdiff2 < 0) {
-          dYdXdiff2 += dYAbs2
+        if (e < 0) {
+          e += dYAbs2
         } else {
           if ((dX < 0 && dY < 0) || (dY > 0 && dY > 0)) {
             y++;
           } else {
             y--;
           }
-          dYdXdiff2 += 2 * (dYAbs - dXAbs);
+          e += dYdXdiff2
         }
         framebuffer.set(x, y, getZ(x, y), color);
       }
 
     } else {
+			e = dXdYdiff2;
       if (dY >= 0) {
         x = startX;
         y = startY;
@@ -177,15 +179,15 @@ function(exports, shader, framebuffer, data) {
       for (i = 0; y < endOfOctant; i++) {
         y++;
 
-        if (dXdYdiff2 <= 0) {
-          dXdYdiff2 += dXAbs2
+        if (e <= 0) {
+          e += dXAbs2
         } else {
           if ((dX < 0 && dY < 0) || (dY > 0 && dY > 0)) {
             x++
           } else {
             x--
           }
-          dXdYdiff2 += 2 * (dXAbs - dYAbs)
+          e += dXdYdiff2
         }
         framebuffer.set(x, y, getZ(x, y), color)
       }
